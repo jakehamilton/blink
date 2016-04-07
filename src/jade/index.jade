@@ -1,0 +1,84 @@
+html
+  head
+    title Blink
+    
+    link(rel="stylesheet" href="assets/css/index.css")
+    script(src="http://player.twitch.tv/js/embed/v1.js")
+    script(src="assets/js/bundle.js")
+    
+  body
+    #p
+    .page
+      .header
+        h3 Blink
+      .content
+        .view#prompt
+          .modal
+            | This app requires your Twitch account.
+            br
+            | Please 
+            a(href="https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id=bm02n8wxxzqmzvfb0zlebd5ye2rn0r7&redirect_uri=http://jakehamilton.website/blink&scope=user_read") Login
+          .prompt__preview
+            .preview__hero
+            .preview__row
+              .preview__video
+              .preview__video
+              .preview__video
+              .preview__video
+              .preview__video
+            .preview__row
+              .preview__video
+              .preview__video
+              .preview__video
+              .preview__video
+              .preview__video
+              .preview__video
+              .preview__video
+              .preview__video
+            .preview__row
+              .preview__video
+              .preview__video
+              .preview__video
+        .view#videos
+          .hero
+        .view#search
+        .view#player
+          .player__overlay
+            .exit-btn x
+          #player-wrapper
+      .footer
+      
+    template#row-template
+      .videos__row
+        .row-control--left
+          .icon.nf-icon.nf-left-caret
+        .row-control--right
+          .icon.nf-icon.nf-right-caret
+        .videos__header
+          span.title
+        .videos__wrapper
+          .videos__mask
+            .videos
+
+    template#poster-template
+      .video
+        .video__media
+          img.video__image
+        .video__details__wrapper
+          .video__details
+            span.video__title
+            span.video__author
+          
+    template#hero-template
+      .hero__slide
+        img.slide__image
+        .slide__content__wrapper
+          .slide__content
+            img.slide__content__image
+            .slide__content__channel 
+            .slide__content__description Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere eos deleniti unde necessitatibus soluta voluptatibus id, doloremque qui, accusantium, dicta, quam quia numquam tempore et. Vel officiis neque quasi magni.
+            .slide__content__buttons
+              a.slide__button.watch-now-button.nf-icon.nf-play-icon
+                .slide__button--inner Watch Now
+              a.slide__button.subscribe-button.nf-icon.nf-add-icon
+                .slide__button--inner Subscribe

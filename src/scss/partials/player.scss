@@ -1,0 +1,20 @@
+#player-wrapper {
+  z-index: 100;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+.exit-btn {
+  position: absolute;
+  display: block;
+  padding: 4px;
+  z-index: 200;
+  font-size: 48px;
+  font-weight: 700;
+  color: #FFF;
+  top: 20px;
+  right: 40px;
+  text-shadow: 1px 1px 2px black;
+  cursor: pointer;
+}

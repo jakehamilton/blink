@@ -1,0 +1,20 @@
+@import 'partials/global';
+@import 'partials/header';
+@import 'partials/videos';
+@import 'partials/player';
+@import 'partials/prompt';
+@import 'partials/hero';
+
+#search,
+#player,
+#videos,
+#prompt {
+  display: none;
+}
+
+#search.visible,
+#player.visible,
+#videos.visible,
+#prompt.visible {
+  display: block;
+}

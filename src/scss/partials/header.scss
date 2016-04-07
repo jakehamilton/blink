@@ -1,0 +1,22 @@
+@import 'fonts';
+
+$header_height: 72px;
+
+.header {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 24px;
+  line-height: $header_height;
+  text-transform: uppercase;
+  font-size: 38px;
+  font-family: "dimis";
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, .8), rgba(0, 0, 0, .1) 90%, transparent);
+
+  h3 {
+    margin: 0;
+    color: #FFF;
+  }
+}

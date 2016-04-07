@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "nf-icon";
+  src: url('../fonts/nf-icon.woff') format('woff');
+}
+
+@font-face {
+  font-family: "dimis";
+  src: url('../fonts/DIMIS.TTF') format('truetype');
+}
+
+.nf-icon:before {
+  font-family: "nf-icon";
+  vertical-align: middle;
+  font-size: inherit;
+  background-color: transparent;
+  margin-right: .71em;
+  font-weight: initial;
+}
+
+.nf-play-icon:before {
+  content: '\e646';
+}
+
+.nf-add-icon:before {
+  content: '\e641';
+}
+
+.nf-right-caret:before {
+  content: '\e867';
+  font-weight: 700;
+}
+
+.nf-left-caret:before {
+  content: '\e868';
+  font-weight: 700;
+}

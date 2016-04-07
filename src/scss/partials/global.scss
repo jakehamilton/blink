@@ -1,0 +1,25 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, Sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background-color: rgb(20, 20, 20);
+}
+
+.view {
+  height: 100%;
+  min-height: 100vh;
+}
+
+.page {
+  position: relative;
+}
