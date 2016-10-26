@@ -5,11 +5,12 @@ import video_row from './video-row.js';
 import {default as blink_router} from './router.js';
 import {default as blink_player} from './player.js';
 
-let api = new twitch();
+const client_id = 'bm02n8wxxzqmzvfb0zlebd5ye2rn0r7';
+
+let api = new twitch(client_id);
 let db = new storage('blink');
 let router = new blink_router();
 
-const client_id = 'bm02n8wxxzqmzvfb0zlebd5ye2rn0r7';
 let OAUTH_TOKEN = db.load('oauth_token');
 
 if (!OAUTH_TOKEN) {
@@ -135,20 +136,4 @@ window.addEventListener('load', (event) => {
         });
     })
   }
-
-  // api.get_user_videos('cirno_tv', 16)
-  //   .then((response) => {
-  //     let row = new video_row('Cirno TV', response.videos, { username: 'cirno_tv', limit: 8 });
-  //     document.getElementById('videos').appendChild(row.element);
-  //
-  //     document.querySelector('.slide__image').src = response.videos[0].thumbnail;
-  //
-  //     api.get_user_videos('trumpsc', 16)
-  //     .then((response) => {
-  //       let row = new video_row('Trump', response.videos, { username: 'trumpsc', limit: 8 });
-  //       document.getElementById('videos').appendChild(row.element);
-  //     });
-  //   });
-
-
 });

@@ -3,14 +3,17 @@ import ajax from './ajax.js';
 let http = new ajax();
 
 class twitch {
-  constructor() {
+  constructor(client_id) {
+    if (!client_id) throw new Error('Twitch API requires `client_id` to be set');
+
     this.base_url = 'https://api.twitch.tv/kraken';
+    this.client_id = client_id;
   }
 
   get_user(token) {
     let url = `${this.base_url}/user?oauth_token=${token}`;
     return new Promise((resolve, reject) => {
-      http.get(url, true)
+      http.get(url, true, { 'Client-ID': this.client_id })
         .then((_data) => {
           resolve(_data);
         })
@@ -21,7 +24,7 @@ class twitch {
   get_follows(token, user) {
     let url = `${this.base_url}/users/${user}/follows/channels?oauth_token=${token}&limit=100`;
     return new Promise((resolve, reject) => {
-      http.get(url, true)
+      http.get(url, true, { 'Client-ID': this.client_id })
         .then((_data) => {
           _data.follows.sort((a, b) => {
             if (a.channel.display_name.toLowerCase() < b.channel.display_name.toLowerCase()) {
@@ -44,7 +47,7 @@ class twitch {
     let url = `${this.base_url}/games/top?limit=${limit}&offset=${offset}`;
     let data = {};
     return new Promise((resolve, reject) => {
-      http.get(url, true)
+      http.get(url, true, { 'Client-ID': this.client_id })
         .then((_data) => {
           data.next = _data._links.next;
           data.games = [];
@@ -74,7 +77,7 @@ class twitch {
     let url = `${this.base_url}/videos/top?limit=${limit}&offset=${offset}${game ? '&game=' + game : ''}${period ? '&period=' + period : ''}`;
     let data = {};
     return new Promise((resolve, reject) => {
-      http.get(url, true)
+      http.get(url, true, { 'Client-ID': this.client_id })
         .then((_data) => {
           data.next = _data._links.next;
           data.videos = [];
@@ -106,12 +109,13 @@ class twitch {
     let url = `${this.base_url}/channels/${channel}/videos?limit=${limit}&offset=${offset}${broadcasts ? '&broadcasts=true' : ''}${hls_only ? '&hls=true' : ''}`;
     let data = {};
     return new Promise((resolve, reject) => {
-      http.get(url, true)
+      http.get(url, true, { 'Client-ID': this.client_id })
         .then((_data) => {
           data.next = _data._links.next;
           data.videos = [];
 
           _data.videos.forEach((item) => {
+            console.log(item)
             let video = {};
             video.name = item.title;
             video.description = item.description;
@@ -123,7 +127,12 @@ class twitch {
             video.game = item.game;
             video.channel = item.channel.name;
             video.channel_display_name = item.channel.display_name;
-            video.thumbnail = item.thumbnails[0].url;
+
+            if (!item.thumbnails[0]) {
+              video.thumbnail = 'http://localhost:3000/assets/img/placeholder.jpg';
+            } else {
+              video.thumbnail = item.thumbnails[0].url;
+            }
 
             data.videos.push(video);
           });
@@ -137,7 +146,7 @@ class twitch {
   get_stream(channel) {
     let url = `${this.base_url}/streams/${channel}`;
     return new Promise((resolve, reject) => {
-      http.get(url, true)
+      http.get(url, true, { 'Client-ID': this.client_id })
         .then((_data) => {
           resolve(_data);
         });
@@ -148,7 +157,7 @@ class twitch {
   get_user_video_follows(token) {
     let url = `${this.base_url}/videos/followed?oauth_token=${token}&limit=100`;
     return new Promise((resolve, reject) => {
-      http.get(url, true)
+      http.get(url, true, { 'Client-ID': this.client_id })
         .then((_data) => {
           resolve(_data.streams);
         })
@@ -159,7 +168,7 @@ class twitch {
   get_user_stream_follows(token) {
     let url = `${this.base_url}/streams/followed?oauth_token=${token}&limit=100`;
     return new Promise((resolve, reject) => {
-      http.get(url, true)
+      http.get(url, true, { 'Client-ID': this.client_id })
         .then((_data) => {
           resolve(_data.streams.map((stream) => {
             stream.type = 'stream';
