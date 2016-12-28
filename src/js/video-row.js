@@ -11,9 +11,15 @@ class video_row {
     this.row.querySelector('.title').innerText = name;
     this.wrapper = this.row.querySelector('.videos');
 
+    // Some setup
+    // Track the section of videos visible on screen
     this.section = 0;
+    // The width of each video element
     this.video_width = 315;
+    // The total sections loaded
     this.total_sections = 0;
+
+    // Cache important DOM nodes
     this.videos_mask = this.row.querySelector('.videos__mask');
     this.control_left = this.row.querySelector('.row-control--left');
     this.control_right = this.row.querySelector('.row-control--right');
@@ -65,6 +71,8 @@ class video_row {
     });
     this.videos.push(video);
     this.wrapper.appendChild(element);
+
+    // Calculate the total number of sections loaded
     this.total_sections = this.wrapper.offsetWidth / ((this.video_width * (window.innerWidth / this.video_width)));
   }
 

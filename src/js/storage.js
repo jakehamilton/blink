@@ -4,6 +4,8 @@ class storage {
   constructor(namespace) {
     this.load_storage_map(namespace);
   }
+
+  // Creates a (very likely) unique id
   unique_id(size) {
     let alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890$&-_+';
     let id = '';
@@ -19,6 +21,8 @@ class storage {
 
     return id;
   }
+
+  // Saves some data in local storage
   save(name, data) {
     if (!this.storage_map[name]) {
       this.storage_map[name] = this.unique_id(5);
@@ -27,15 +31,23 @@ class storage {
     window.localStorage.setItem(`storage-${this.namespace}-${key}`, (typeof data == 'Object') ? JSON.stringify(data) : data);
     this.save_storage_map();
   }
+
+  // Loads some data from local storage
   load(name) {
     return window.localStorage.getItem(`storage-${this.namespace}-${this.storage_map[name]}`) || false;
   }
+
+  // Removes some data from local storage
   delete(name) {
     window.localStorage.removeItem(`storage-${this.namespace}-${this.storage_map[name]}`);
   }
+
+  // Saves the current storage map state 
   save_storage_map() {
     window.localStorage.setItem(`storage-${this.namespace}`, JSON.stringify(this.storage_map));
   }
+
+  // Loads the a storage map from local storage (and in a certain namespace)
   load_storage_map(namespace) {
     this.namespace = namespace;
     this.storage_map = JSON.parse(window.localStorage.getItem(`storage-${this.namespace}`) || '{}');

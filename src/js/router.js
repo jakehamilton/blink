@@ -5,12 +5,14 @@ class router {
     this.active_route;
   }
 
+  // Navigate to a given route
   route(name) {
     if (this.active_route) this.active_route.classList.remove('visible');
     this.active_route = this.routes[name];
     this.routes[name].classList.add('visible');
   }
 
+  // Add new route(s)
   add_route(route) {
     if (Array.isArray(route)) {
       route.forEach((r) => {

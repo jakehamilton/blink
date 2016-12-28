@@ -18,12 +18,17 @@ class ajax {
           })
       }
 
+      // When the request finishes, resolve with the response
       this.request.addEventListener('load', () => {
         resolve(parseJSON ? JSON.parse(this.request.response) : this.request.response);
       });
+
+      // Or reject with an error
       this.request.addEventListener('error', () => {
         reject('Failed to communicate with server at url: ' + url);
       });
+
+      // Send the response
       this.request.send();
     });
   }
