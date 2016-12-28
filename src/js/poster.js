@@ -1,3 +1,4 @@
+// A single video poster inside a video row
 class poster {
   constructor(game) {
     this.poster = document.importNode(document.querySelector('#poster-template').content, true);

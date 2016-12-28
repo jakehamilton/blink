@@ -1,3 +1,4 @@
+// The hero banner slides (currently don't _slide_)
 class slide {
   constructor(stream) {
     this.slide = document.importNode(document.querySelector('#hero-template').content, true);

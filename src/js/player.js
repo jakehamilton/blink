@@ -1,3 +1,4 @@
+// Wrapper for the Twitch player
 class player {
   constructor(id) {
     this.id = id;

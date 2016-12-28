@@ -2,7 +2,10 @@ import ajax from './ajax.js';
 
 let http = new ajax();
 
+// Custom wrapper for the twitch api
 class twitch {
+  // On creation, we set a client id to be sent on each request
+  // This is required by the Twitch api
   constructor(client_id) {
     if (!client_id) throw new Error('Twitch API requires `client_id` to be set');
 
@@ -10,6 +13,7 @@ class twitch {
     this.client_id = client_id;
   }
 
+  // Retrieves a single user given an authentication token
   get_user(token) {
     let url = `${this.base_url}/user?oauth_token=${token}`;
     return new Promise((resolve, reject) => {
@@ -21,11 +25,14 @@ class twitch {
     });
   }
 
+  // Retrieves all followed channels (up to 100) for a user
   get_follows(token, user) {
     let url = `${this.base_url}/users/${user}/follows/channels?oauth_token=${token}&limit=100`;
     return new Promise((resolve, reject) => {
       http.get(url, true, { 'Client-ID': this.client_id })
         .then((_data) => {
+          // The `_data` name is here because previously there was
+          //  a `data` variable in the same closure being constructed
           _data.follows.sort((a, b) => {
             if (a.channel.display_name.toLowerCase() < b.channel.display_name.toLowerCase()) {
               return -1;
@@ -40,9 +47,9 @@ class twitch {
         })
         .catch(console.error);
     });
-
   }
 
+  // Retrieves the top games on Twitch at the current moment
   get_top_games(limit = 15, offset = 0) {
     let url = `${this.base_url}/games/top?limit=${limit}&offset=${offset}`;
     let data = {};
@@ -73,6 +80,7 @@ class twitch {
     });
   }
 
+  // Retrieves the top videos on Twitch
   get_top_videos(limit = 15, offset = 0, game, period) {
     let url = `${this.base_url}/videos/top?limit=${limit}&offset=${offset}${game ? '&game=' + game : ''}${period ? '&period=' + period : ''}`;
     let data = {};
@@ -105,6 +113,7 @@ class twitch {
     });
   }
 
+  // Retrieves a user's videos
   get_user_videos(channel, limit = 15, offset = 0, broadcasts = true, hls_only) {
     let url = `${this.base_url}/channels/${channel}/videos?limit=${limit}&offset=${offset}${broadcasts ? '&broadcasts=true' : ''}${hls_only ? '&hls=true' : ''}`;
     let data = {};
@@ -143,6 +152,7 @@ class twitch {
     });
   }
 
+  // Retrieves a given channel's stream if it is available
   get_stream(channel) {
     let url = `${this.base_url}/streams/${channel}`;
     return new Promise((resolve, reject) => {
@@ -154,6 +164,7 @@ class twitch {
     .catch(console.error);
   }
 
+  // Retrieves a user's video follows given an authentication token
   get_user_video_follows(token) {
     let url = `${this.base_url}/videos/followed?oauth_token=${token}&limit=100`;
     return new Promise((resolve, reject) => {
@@ -165,6 +176,7 @@ class twitch {
     });
   }
 
+  // Retrieves a user's stream follows given an authentication token
   get_user_stream_follows(token) {
     let url = `${this.base_url}/streams/followed?oauth_token=${token}&limit=100`;
     return new Promise((resolve, reject) => {

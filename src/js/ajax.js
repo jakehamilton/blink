@@ -1,13 +1,16 @@
+// Handles ajax calls
 class ajax {
   constructor() {
     this.request;
   }
 
+  // Makes get requests
   get(url, parseJSON, headers) {
     return new Promise((resolve, reject) => {
       this.request = new XMLHttpRequest();
       this.request.open('GET', url, true);
 
+      // Append headers if they were passed
       if (headers) {
         Object.keys(headers)
           .forEach(key => {

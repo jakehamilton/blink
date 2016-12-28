@@ -1,3 +1,4 @@
+// Handles routing for the application
 class router {
   constructor(routes = {}) {
     this.routes = routes;

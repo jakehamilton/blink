@@ -1,3 +1,5 @@
+// A wrapper around the localstorage api, allows namespaces
+// (mostly just fun to implement)
 class storage {
   constructor(namespace) {
     this.load_storage_map(namespace);
