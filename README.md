@@ -5,6 +5,19 @@ A Netflix-style Twitch app
 ![Blink Preview 1](/screenshots/screenshot-1.png)
 ![Blink Preview 2](/screenshots/screenshot-2.png)
 
+# A few words
+This project still has a way to go.
+If you want to pitch in, here are a few things you can work on in no particular order:
+
++ Performance
+  - [ ] Only load 3-4 video rows at a time instead of every subscription
++ Features
+  - [ ] Load top Twitch streams in the hero banner
+  - [ ] Actually rotate the banner images
+  - [ ] Fix (or remove) the "subscribe" button on the hero banner
+  - [ ] No longer cap subscription retrieval at 100
+  - [ ] Mobile styles
+
 # Install
 ```bash
 # Clone the repo
