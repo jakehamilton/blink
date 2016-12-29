@@ -17,6 +17,7 @@ If you want to pitch in, here are a few things you can work on in no particular 
 
 + Performance
   - [ ] Only load 3-4 video rows at a time instead of every subscription
+  - [ ] Simplify the Promise logic (Currently creating unnecessary promises)
 + Features
   - [ ] Load top Twitch streams in the hero banner
   - [ ] Actually rotate the banner images
