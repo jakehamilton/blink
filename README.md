@@ -6,6 +6,12 @@ A Netflix-style Twitch app
 ![Blink Preview 2](/screenshots/screenshot-2.png)
 
 # A few words
+It should be known that this project has some issues. For instance, naming convenctions
+are pretty darn weird. I used this project to learn quite a bit and to also play with/challenge
+common practices. Hence why this project uses underscord\_lower\_case everywhere. Don't think
+that I actually still do this, it was a one time thing!
+
+# Contributing
 This project still has a way to go.
 If you want to pitch in, here are a few things you can work on in no particular order:
 

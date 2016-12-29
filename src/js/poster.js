@@ -1,6 +1,17 @@
-// A single video poster inside a video row
+/**
+ * @class poster
+ * @description A single video poster component
+ */
 class poster {
+  /**
+   * @constructor
+   * @param {Object} game A game video object from the Twitch API to laod
+   */
   constructor(game) {
+    /**
+     * @member poster
+     * @description The base DOM node for the component
+     */
     this.poster = document.importNode(document.querySelector('#poster-template').content, true);
 
     // If this is a stream, then use the channel's banner and name if available
@@ -14,7 +25,12 @@ class poster {
     this.poster.querySelector('.video__title').innerText = game.name.length > 16 ? game.name.substr(0, 16) + '...' : game.name;
   }
 
-  // Retrieve the underlying element
+  /**
+   * @get element
+   * @description Returns the base DOM element of the component
+   * 
+   * @return {HTMLElement} slide The base DOM element of the component
+   */
   get element() {
     return this.poster;
   }

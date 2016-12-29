@@ -1,5 +1,9 @@
-// A wrapper around the localstorage api, allows namespaces
-// (mostly just fun to implement)
+/**
+ * @class storage
+ * @description A wrapper for the native local storage api
+ * 
+ * Mostly implemented because I thought it would be a fun little challenge
+ */
 class storage {
   constructor(namespace) {
     this.load_storage_map(namespace);

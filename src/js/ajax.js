@@ -1,10 +1,35 @@
-// Handles ajax calls
+/**
+ * @class ajax
+ * @description Performs HTTP requests
+ */
 class ajax {
+  /**
+   * @constructor
+   */
   constructor() {
+    /**
+     * @member {XMLHttpRequest} request The request being made
+     */
     this.request;
   }
 
-  // Makes get requests
+  /**
+   * @method get
+   * @description Performs a `get` request to a given endpoint
+   * @param {String} url The url to request
+   * @param [Bool=false] parseJSON Whether or not to parse the response before resolution
+   * @param [Object] headers A map of headers to send
+   * 
+   * @promise
+   * @resolve {Object|String} response The response from the server
+   * @reject {Error} err The error that occurred
+   * 
+   * @example
+   * let http = new ajax()
+   * 
+   * http.get('example.com')
+   *   .then(response => ...)
+   */
   get(url, parseJSON, headers) {
     return new Promise((resolve, reject) => {
       this.request = new XMLHttpRequest();

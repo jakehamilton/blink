@@ -1,6 +1,16 @@
-// The hero banner slides (currently don't _slide_)
+/**
+ * @class slide
+ * @description An individual hero slide
+ */
 class slide {
+  /**
+   * @constructor
+   */
   constructor(stream) {
+    /**
+     * @member slide
+     * @description The base DOM element of the component
+     */
     this.slide = document.importNode(document.querySelector('#hero-template').content, true);
 
     // Attempt to find an image for the video
@@ -20,12 +30,23 @@ class slide {
     });
   }
 
-  // Assign a callback
+  /**
+   * @static
+   * @method set_watch_now_callback
+   * @description Assigns a function as a callback for when a user clicks the "watch now" button
+   * 
+   * @void
+   */
   static set_watch_now_callback(fn) {
     slide.prototype.watch_now_callback = fn;
   }
 
-  // Get the underlying element
+  /**
+   * @get element
+   * @description Returns the base DOM element of the component
+   * 
+   * @return {HTMLElement} slide The base DOM element of the component
+   */
   get element() {
     return this.slide;
   }

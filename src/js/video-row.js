@@ -1,7 +1,16 @@
 import poster from './poster.js';
 
-// Constructs a row of video elements
+/**
+ * @class video_row
+ * @description The video row component, constructs a video row
+ */
 class video_row {
+  /**
+   * @constructor
+   * @param {String} name The name of the row
+   * @param [Array] initial_videos An array of video objects to add
+   * @param [Any=false] data An optional data object
+   */
   constructor(name, initial_videos, data) {
     this.videos = [];
     this.data = data || false;
@@ -42,22 +51,46 @@ class video_row {
       video_row.prototype.navigation_callback({ direction: 'right' , section: this.section, total_sections: this.total_sections, row: this, data: this.data, videos: this.videos.length});
     });
 
+    // Append the videos we were given
     if (initial_videos) {
       this.push(initial_videos);
     }
   }
 
-  // Assign callbacks to _EVERY_ instance
+  /**
+   * @static
+   * @method set_video_click_callback
+   * @description Assign a callback to be run when a user clicks on a video poster
+   * @param {Function} fn The function callback
+   * 
+   * @void
+   */
   static set_video_click_callback(fn) {
     video_row.prototype.video_click_callback = fn;
   }
 
+  /**
+   * @static
+   * @method set_navigation_callback
+   * @description Assign a callback to be run when a user navigates left or right in the row
+   * @param {Function} fn The function callback
+   * 
+   * @void
+   */
   static set_navigation_callback(fn) {
     video_row.prototype.navigation_callback = fn;
   }
 
   // Add a video (or videos) to the row
+  /**
+   * @method push
+   * @description Add a video (or videos) to the row
+   * @param {Object|Array<Object>} video The video(s) to add
+   * 
+   * @void
+   */
   push(video) {
+    // If we got an array, then call push for each item
     if (Array.isArray(video)) {
       video.forEach((v) => {
         this.push(v);
@@ -65,7 +98,10 @@ class video_row {
       return;
     }
     
+    // Create a brand new poster for each video
     let element = new poster(video).element;
+
+    // Register our click handler
     element.querySelector('.video').addEventListener('click', () => {
       video_row.prototype.video_click_callback(video);
     });
@@ -76,7 +112,12 @@ class video_row {
     this.total_sections = this.wrapper.offsetWidth / ((this.video_width * (window.innerWidth / this.video_width)));
   }
 
-  // Returns the row element
+  /**
+   * @get element
+   * @description Returns the base DOM element of the component
+   * 
+   * @return {HTMLElement} slide The base DOM element of the component
+   */
   get element() {
     return this.row;
   }
