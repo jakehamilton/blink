@@ -19,7 +19,8 @@ gulp.task('serve', ['watch'], () => {
     ghostMode: false,
     server: {
       baseDir: 'app'
-    }
+    },
+    port: 8080
   });
 });
 
